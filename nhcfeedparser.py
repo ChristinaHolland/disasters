@@ -178,3 +178,5 @@ else:
 # currentinfo.to_csv('./'+filename, index=False)
 with open('./'+filename,'w') as outfile:
     json.dump(currentinfo,outfile)
+
+#https://stackabuse.com/reading-and-writing-json-to-a-file-in-python

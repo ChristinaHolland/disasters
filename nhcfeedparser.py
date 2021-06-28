@@ -131,8 +131,8 @@ else:
             
     # get the current location of the storm center:
     location = current.split('LOCATION...')[1].split(' ABOUT')[0].split(' ')
-    latitude = location[0]
-    longitude = location[1]
+    latitude = float(location[0].replace('N',''))
+    longitude = -1*float(location[1].replace('W',''))
 
     # get the time of the advisory:
     issuetime = current.split('ISSUED AT ')[1].split(' <PRE')[0]

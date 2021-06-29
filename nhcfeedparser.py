@@ -139,8 +139,8 @@ else:
 
     # get the projected path direction and speed (does NOT include the cone of uncertainty) :
     movement = current.split('MOVEMENT...')[1].split('...')[0].split(' OR ')[1].split(' AT ')
-    pathdirection = movement[0]
-    pathspeed = movement[1]
+    pathdirection = int(movement[0].split(' ')[0])
+    pathspeed = int(movement[1].split(' ')[0])
 
     # pull the warning, watch, and summary text strings:
     warningtext = current.split('CHANGES WITH THIS ADVISORY... ')[1].split(' DISCUSSION')[0]
@@ -167,8 +167,8 @@ else:
         'pressure_mbar':      pressure,
         'radius':             radius,
         'time_of_landfall':   timingtext,
-        'movement_direction': pathdirection,
-        'movement_speed':     pathspeed,
+        'movement_direction_cw_from_N': pathdirection,
+        'movement_speed_mph':     pathspeed,
         'watch_updates':      watchtext,
         'warning_updates':    warningtext,
         'alerts_summary':     summarytext

@@ -68,6 +68,7 @@ else:
         
     # find the center pressure (mbar) and the wind speed text:
     pressure = current.split('PRESSURE...')[1].split('...')[0]
+    pressureval = int(pressure.split(' ')[0])
     winds = current.split('WINDS...')[1].split('...')[0]
         
     # convert the wind speed text to numberic value, and then use that to define the storm category
@@ -162,9 +163,9 @@ else:
         'datetime':           issuetime,
         'current_latitude':   latitude,
         'current_longitude':  longitude,
-        'winds_mph':          winds,
+        'winds_mph':          windval,
         'storm_category':     category,
-        'pressure_mbar':      pressure,
+        'pressure_mbar':      pressureval,
         'radius':             radius,
         'time_of_landfall':   timingtext,
         'movement_direction_cw_from_N': pathdirection,

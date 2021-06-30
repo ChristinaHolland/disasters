@@ -7,24 +7,29 @@ import pandas as pd
 import json
 
 # user input -- will probably need to be changed by SEI team to fit this into an app:
+# modified 6/30/21
 
-print('Please type "A" to use archived data feed WITH an active storm,')
-print('"B" to use archived feed with NO storm, or "C" to use current live feed:')
-feed = input()
-if feed=='A':
-    feedpath = "./archive_feed"
-elif feed=='B':
-    feedpath = "./nostormfeed"
-elif feed=='C':
-    feedpath = "https://www.nhc.noaa.gov/index-at.xml"
-else:
-    print('Error -- please enter either A, B, or C.')
+#print('Please type "A" to use archived data feed WITH an active storm,')
+#print('"B" to use archived feed with NO storm, or "C" to use current live feed:')
+#feed = input()
+#if feed=='A':
+
+feedpath = "./archive_feed"
+
+#elif feed=='B':
+#    feedpath = "./nostormfeed"
+#elif feed=='C':
+#    feedpath = "https://www.nhc.noaa.gov/index-at.xml"
+#else:
+#    print('Error -- please enter either A, B, or C.')
     
-print('Please type an output filename')
-filename = input()
-if filename[-4:]!='.txt':
-    print('Note: adding ".txt" to the filename')
-    filename +='.txt'
+filename = 'stormdata.txt'
+
+#print('Please type an output filename')
+#filename = input()
+#if filename[-4:]!='.txt':
+#    print('Note: adding ".txt" to the filename')
+#    filename +='.txt'
 
 # end user input section.
 

@@ -14,7 +14,7 @@ import json
 #feed = input()
 #if feed=='A':
 
-feedpath = "./archive_feed"
+feedpath = "https://www.nhc.noaa.gov/index-at.xml"
 
 #elif feed=='B':
 #    feedpath = "./nostormfeed"
@@ -23,7 +23,7 @@ feedpath = "./archive_feed"
 #else:
 #    print('Error -- please enter either A, B, or C.')
     
-filename = 'stormdata.txt'
+filename = 'testdata.txt'
 
 #print('Please type an output filename')
 #filename = input()
@@ -148,6 +148,7 @@ else:
     pathdirection = int(movement[0].split(' ')[0])
     pathspeed = int(movement[1].split(' ')[0])
 
+    # pull the warning, watch, and summary text strings:
     warningtext = current.split('CHANGES WITH THIS ADVISORY')[1].split(' DISCUSSION')[0]
     warningtext = warningtext.split('SUMMARY OF')
     summarytext = warningtext[1]
@@ -166,7 +167,8 @@ else:
     watchtext   = ''.join([c for c in alerts if ('WATCH' in c)])
     warningtext = ''.join([c for c in alerts if ('WARNING' in c)])
     if (watchtext=='') and (warningtext==''): summarytext = 'NO CHANGES: ' + summarytext
-
+   
+    
     # compile data:
     currentinfo = {
         'datetime':           issuetime,

@@ -36,8 +36,8 @@ filename = 'stormdata.txt'
 
 # read in RSS feed and get titles:
 NewsFeed = feedparser.parse(feedpath)
-N = len(NewsFeed.entries)
-titles = [e.title for e in NewsFeed.entries]
+N = len(NewsFeed['entries'])
+titles = [e['title'] for e in NewsFeed['entries']]
 
 # check for "Public Advisory" in titles list. If it's not there; there is no current storm in the feed
 currentadv = [n for n in range(N) if 'Public Advisory' in titles[n]]
@@ -67,7 +67,7 @@ else:
     n = 0
     # pull off the advisory text, do preliminary cleaning:
     currentadv = currentadv[n]
-    current = ''.join(NewsFeed.entries[currentadv].summary.split('\n'))
+    current = ''.join(NewsFeed['entries'][currentadv].summary.split('\n'))
     current = current.replace('--','')
     current = ''.join([c.upper() for c in current])
         
@@ -88,7 +88,7 @@ else:
     else:              category = 'Subtropical'
 
     # radius is pulled from a different section, "description" instead of "summary":    
-    chk0 = ''.join(NewsFeed.entries[currentadv].description.split('\n'))
+    chk0 = ''.join(NewsFeed['entries'][currentadv]['description'].split('\n'))
     chk0 = ''.join([c.upper() for c in chk0])
     # if there is no info for the storm raius, use 300 mi as the default, as that is a typical value
     # https://www.weather.gov/source/zhu/ZHU_Training_Page/tropical_stuff/hurricane_anatomy/hurricane_anatomy.html
@@ -123,7 +123,7 @@ else:
     forecastdis = [n for n in range(N) if 'Forecast Discussion' in titles[n]]
     if len(forecastdis)>0:
         forecastdis = forecastdis[0]
-        chk = ''.join(NewsFeed.entries[forecastdis].summary.split('\n')).split('. ')
+        chk = ''.join(NewsFeed['entries'][forecastdis]['summary'].split('\n')).split('. ')
         # need noth "LANDFALL" and an indication of time, or else it might be a statement of coastal erosion expected within 
         # a certain distance of landfall
         # if there is no such string, save a default statement

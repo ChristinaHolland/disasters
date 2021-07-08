@@ -6,33 +6,13 @@ import feedparser
 import pandas as pd
 import json
 
-# user input -- will probably need to be changed by SEI team to fit this into an app:
-# modified 6/30/21
-
-#print('Please type "A" to use archived data feed WITH an active storm,')
-#print('"B" to use archived feed with NO storm, or "C" to use current live feed:')
-#feed = input()
-#if feed=='A':
-
-feedpath = "./archive_feed"
-
-#elif feed=='B':
-#    feedpath = "./nostormfeed"
-#elif feed=='C':
-#    feedpath = "https://www.nhc.noaa.gov/index-at.xml"
-#else:
-#    print('Error -- please enter either A, B, or C.')
+# Specify input: "./archive_feed" (file) for static archive data, or "https://www.nhc.noaa.gov/index-at.xml" for the live NHC feed
+# Comment out the one not wanted.
+# feedpath = "./input_data/archive_feed"
+feedpath = "https://www.nhc.noaa.gov/index-at.xml"
     
-filename = 'stormdata.txt'
-
-#print('Please type an output filename')
-#filename = input()
-#if filename[-4:]!='.txt':
-#    print('Note: adding ".txt" to the filename')
-#    filename +='.txt'
-
-# end user input section.
-
+# Specify output (JSON format):
+filename = './output_data/stormdata.txt'
 
 # read in RSS feed and get titles:
 NewsFeed = feedparser.parse(feedpath)
@@ -186,7 +166,7 @@ else:
 
 # save data:
 # currentinfo.to_csv('./'+filename, index=False)
-with open('./'+filename,'w') as outfile:
+with open(filename,'w') as outfile:
     json.dump(currentinfo,outfile)
 
 #https://stackabuse.com/reading-and-writing-json-to-a-file-in-python
